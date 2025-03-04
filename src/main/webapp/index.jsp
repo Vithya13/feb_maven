@@ -1,5 +1,5 @@
-<<%@ page language="java" contentType="text/html; charset=ISO-8859-1"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"%>
+<%@ taglib uri="http://xmlns.jcp.org/jsp/jstl/core" prefix="c" %>
 
 <!DOCTYPE html>
 <html>
@@ -8,24 +8,21 @@
 	</head>
 	<body>
 
-		<%-- Declaring a variable in a scriptlet --%>
-		<%
-		    String user = "John Doe";
-		    %>
-		    %
-		    %<%-- Displaying dynamic content using expressions --%>
-		    %<h1>Welcome, <%= user %>!</h1>
-		    %
-		    %<%-- Using a JSTL tag to display a message --%>
-		    %<c:if test="${user != null}">
-		    %    <p>User is logged in: <strong>${user}</strong></p>
-		    %    </c:if>
-		    %
-		    %    <%-- Looping through items using JSTL --%>
-		    %    <c:forEach var="i" items="${items}">
-		    %        <p>Item: ${i}</p>
-		    %        </c:forEach>
-		    %
-		    %        </body>
+		<% 
+		    pageContext.setAttribute("user", "John Doe"); 
+		        java.util.List<String> itemsList = java.util.Arrays.asList("Apple", "Banana", "Cherry");
+			    pageContext.setAttribute("items", itemsList);
+			    %>
+			    %
+			    %<h1>Welcome, ${user}!</h1>
+			    %
+			    %<c:if test="${user ne null}">
+			    %    <p>User is logged in: <strong>${user}</strong></p>
+			    %    </c:if>
+			    %
+			    %    <c:forEach var="i" items="${items}">
+			    %        <p>Item: ${i}</p>
+			    %        </c:forEach>
+			    %
+			    %        </body>
 	%        </html>
-%
